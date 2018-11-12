@@ -17,6 +17,8 @@ public class ButtonMovement : MonoBehaviour
     public GameObject Middle;
     public GameObject Right;
 
+    public float speed = 30.0f;
+
 
 
     private GameObject currentNode;
@@ -31,8 +33,8 @@ public class ButtonMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+        transform.position = Vector3.MoveTowards(transform.position, currentNode.transform.position, speed * Time.deltaTime);
+    }
 
     public void MoveLeft()
     {
@@ -52,6 +54,7 @@ public class ButtonMovement : MonoBehaviour
     {
       if(currentPosition == TargetPosition.Middle)
         {
+            
             SetTarget(TargetPosition.Right);
             Debug.Log("working");
         }
@@ -82,7 +85,7 @@ public class ButtonMovement : MonoBehaviour
             currentNode = Right;
             currentPosition = TargetPosition.Right;
         }
-        transform.position = currentNode.transform.position;
+        //transform.position = currentNode.transform.position;
     }
 
 
