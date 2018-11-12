@@ -17,7 +17,7 @@ public class ButtonMovement : MonoBehaviour
     public GameObject Middle;
     public GameObject Right;
 
-    public float speed = 30.0f;
+    public float speed = 8.0f;
 
 
 
