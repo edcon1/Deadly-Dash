@@ -4,3 +4,7 @@ Deadly-Dash/Library/
 *.sln
 
 Deadly-Dash/Temp/
+
+*.csproj
+
+Deadly-Dash/.vs/
