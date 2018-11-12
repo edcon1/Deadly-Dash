@@ -126,7 +126,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1f2731b3927e65c4e886f4c5f170f0a7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 1f2731b3927e65c4e886f4c5f170f0a7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -371,3 +371,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1712945158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1712945160}
+  - component: {fileID: 1712945159}
+  m_Layer: 0
+  m_Name: TileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1712945159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1712945158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e29e89efc209faf45b5956a76731ee34, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSpeed: 10
+  tileArray:
+  - {fileID: 1244493408409672, guid: 535f107c47c299443afd4cb79fa90147, type: 2}
+  - {fileID: 1777212782866300, guid: 799eb5029deddc940b8e548e7c5ab35b, type: 2}
+  - {fileID: 1596259310728068, guid: 32031b1e3c22767498599678d1d23bfb, type: 2}
+  - {fileID: 1915778936565170, guid: 01b65f8c72cb62a479c0a3c7aacb2d52, type: 2}
+  - {fileID: 1929247975599050, guid: 8752d51f510ba434f808766bc413e37b, type: 2}
+  - {fileID: 1297211796224716, guid: b601736903f766d48bc4c5d782409361, type: 2}
+  - {fileID: 1344679454985684, guid: 5148f95d4af37f749bcf8ffb11cefc95, type: 2}
+--- !u!4 &1712945160
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1712945158}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 30}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
