@@ -30,7 +30,10 @@ public class ProceduralGenerator : MonoBehaviour
             int randIndex = rand.Next(0, tileArray.Length - 1);
 
             nextObject = tileArray[randIndex];
-            lastObject = gameObject;
+
+            // RHS sets the start location of the scene treadmill.
+            nextObject.transform.localPosition = gameObject.transform.position;
+            lastObject = nextObject;
 
             SpawnTile();
         }
@@ -58,15 +61,16 @@ public class ProceduralGenerator : MonoBehaviour
     {
         GameObject temp;
 ;       int randIndex = rand.Next(0, tileArray.Length - 1);
+        float objSpacing = nextObject.GetComponent<MeshRenderer>().bounds.size.z / 2 + lastObject.GetComponent<MeshRenderer>().bounds.size.z / 2;
 
         temp = Instantiate(nextObject, gameObject.transform);
         temp.transform.position = lastObject.transform.position;
-        temp.transform.position += new Vector3(0, 0, temp.GetComponent<MeshRenderer>().bounds.size.z);
+        temp.transform.position += new Vector3(0, 0, objSpacing);
 
         lastObject = temp;
         loadedPrefabs.AddLast(lastObject);
 
         nextObject = tileArray[randIndex];
-        spawnZone = transform.position.z - nextObject.GetComponent<MeshRenderer>().bounds.size.z / 2 - lastObject.GetComponent<MeshRenderer>().bounds.size.z / 2;
+        spawnZone = transform.position.z - objSpacing;
     }
 }
