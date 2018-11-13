@@ -41,12 +41,12 @@ public class ButtonMovement : MonoBehaviour
         if(currentPosition == TargetPosition.Middle)
         {
             SetTarget(TargetPosition.Left);
-            Debug.Log("working");
+           
         }
         if(currentPosition == TargetPosition.Right)
         {
             SetTarget(TargetPosition.Middle);
-            Debug.Log("working");
+            
         }
         
     }
@@ -56,13 +56,12 @@ public class ButtonMovement : MonoBehaviour
         {
             
             SetTarget(TargetPosition.Right);
-            Debug.Log("working");
+           
         }
       if(currentPosition == TargetPosition.Left)
         {
             SetTarget(TargetPosition.Middle);
             currentNode = Middle;
-            Debug.Log("working");
         }
         
     }
