@@ -29,9 +29,8 @@ public class FunctionsHS : MonoBehaviour
     private Text title;
     private float canvasHeight;
     private float canvasWidth;
-    private string tableTag = "HS1_";
-    private string nameTag = "player";
-    private string scoreTag = "score";
+    private string pTag;
+    private string sTag;
     private float resetTimer = 0;
     private bool menuDown = false;
 
@@ -48,7 +47,10 @@ public class FunctionsHS : MonoBehaviour
 
         title.gameObject.transform.position = new Vector2(canvasWidth / 2, canvasHeight - titleSpacing);
 
-        float checkExists = PlayerPrefs.GetFloat(tableTag + scoreTag + 0, float.NaN);
+        pTag = GlobalScript.TableTag + GlobalScript.NameTag;
+        sTag = GlobalScript.TableTag + GlobalScript.ScoreTag;
+
+        float checkExists = PlayerPrefs.GetFloat(pTag + 0, float.NaN);
 
         if (float.IsNaN(checkExists))
             InitiateTable();
@@ -116,8 +118,8 @@ public class FunctionsHS : MonoBehaviour
     {
         for (int i = 0; i < 10; ++i)
         {
-            PlayerPrefs.SetString(tableTag + nameTag + i, "Player" + i);
-            PlayerPrefs.SetFloat(tableTag + scoreTag + i, 0);
+            PlayerPrefs.SetString(pTag + i, "Player" + i);
+            PlayerPrefs.SetFloat(sTag + i, 0);
 
             tableHS[i] = new Score("Player" + i, 0);
         }
@@ -127,8 +129,8 @@ public class FunctionsHS : MonoBehaviour
     {
         for (int i = 0; i < 10; ++i)
         {
-            string n = PlayerPrefs.GetString(tableTag + nameTag + i, "ERROR");
-            float s = PlayerPrefs.GetFloat(tableTag + scoreTag + i, float.NaN);
+            string n = PlayerPrefs.GetString(pTag + i, "ERROR");
+            float s = PlayerPrefs.GetFloat(sTag + i, float.NaN);
             tableHS[i] = new Score(n, s);
         }
     }
@@ -137,8 +139,8 @@ public class FunctionsHS : MonoBehaviour
     {
         for (int i = 0; i < 10; ++i)
         {
-            PlayerPrefs.SetString(tableTag + nameTag + i, tableHS[i].playerName);
-            PlayerPrefs.SetFloat(tableTag + scoreTag + i, tableHS[i].playerScore);
+            PlayerPrefs.SetString(pTag + i, tableHS[i].playerName);
+            PlayerPrefs.SetFloat(sTag + i, tableHS[i].playerScore);
         }
     }
 

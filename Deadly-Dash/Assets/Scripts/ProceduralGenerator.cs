@@ -61,7 +61,7 @@ public class ProceduralGenerator : MonoBehaviour
     {
         GameObject temp;
 ;       int randIndex = rand.Next(0, tileArray.Length - 1);
-        float objSpacing = nextObject.GetComponent<MeshRenderer>().bounds.size.z / 2 + lastObject.GetComponent<MeshRenderer>().bounds.size.z / 2;
+        float objSpacing = nextObject.GetComponent<Renderer>().bounds.size.z / 2 + lastObject.GetComponent<MeshRenderer>().bounds.size.z / 2;
 
         temp = Instantiate(nextObject, gameObject.transform);
         temp.transform.position = lastObject.transform.position;
