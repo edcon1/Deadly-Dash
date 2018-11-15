@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -53,10 +54,11 @@ public class FunctionsHS : MonoBehaviour
         float checkExists = PlayerPrefs.GetFloat(pTag + 0, float.NaN);
 
         if (float.IsNaN(checkExists))
-            InitiateTable();
-        else
             LoadTable();
+        else
+            InitiateTable();
 
+        CheckScore();
         DrawTable();
 
         posTemplate.gameObject.SetActive(false);
@@ -144,16 +146,32 @@ public class FunctionsHS : MonoBehaviour
         }
     }
 
-    struct Score
+    private void CheckScore()
     {
-        public Score(string name, float score)
+        if (float.IsNaN(GlobalScript.FinalScore) && GlobalScript.FinalScore > tableHS[9].playerScore)
+            return;
+
+        Score[] tempHS = new Score[10];
+
+        for (int i = 0; i < 10; ++i)
         {
-            playerName = name;
-            playerScore = Mathf.Round(score);
+            if (float.IsNaN(GlobalScript.FinalScore) == false)
+            {
+                if (GlobalScript.FinalScore <= tableHS[i].playerScore)
+                    tempHS[i] = tableHS[i];
+                else
+                {
+                    tempHS[i] = new Score(GlobalScript.FinalPlayer, GlobalScript.FinalScore);
+
+                    GlobalScript.FinalPlayer = GlobalScript.DefaultName;
+                    GlobalScript.FinalScore = float.NaN;
+                }
+            }
+            else
+                tempHS[i] = tableHS[i - 1];
         }
 
-        public string playerName;
-        public float playerScore;
+        tableHS = tempHS;
     }
 
     public void OnClickMenuButton()
@@ -164,5 +182,17 @@ public class FunctionsHS : MonoBehaviour
     public void OnButtonDown()
     {
         menuDown = true;
+    }
+
+    struct Score
+    {
+        public Score(string name, float score)
+        {
+            playerName = name;
+            playerScore = Mathf.Round(score);
+        }
+
+        public string playerName;
+        public float playerScore;
     }
 }
