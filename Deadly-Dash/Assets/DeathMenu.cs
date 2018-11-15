@@ -31,9 +31,11 @@ public class DeathMenu : MonoBehaviour
         DeathMenuUI.SetActive(true);
         Time.timeScale = 0f;
     }
-    public void Reset()
+    public void ResetGame()
     {
         SceneManager.LoadScene("Main scene");
+        IsPlayerDead = false;
+        Time.timeScale = 1f;
     }
     public void HighScoreBTN()
     {
