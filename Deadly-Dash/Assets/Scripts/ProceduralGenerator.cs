@@ -4,14 +4,29 @@ using UnityEngine;
 
 public class ProceduralGenerator : MonoBehaviour
 {
+    struct ObjInstance
+    {
+        public ObjInstance(GameObject g, Bounds b)
+        {
+            obj = g;
+            bounds = b;
+        }
+
+        public GameObject obj;
+        public Bounds bounds;
+    }
+
     [Tooltip("This sets the speed of the map.")]
     public float tileSpeed = 10;
     public GameObject[] tileArray;
 
-    private LinkedList<GameObject> loadedPrefabs = new LinkedList<GameObject>();
+    private LinkedList<ObjInstance> loadedPrefabs = new LinkedList<ObjInstance>();
 
     private GameObject nextObject;
     private GameObject lastObject;
+    private Bounds nextBounds = new Bounds(Vector3.zero, Vector3.zero);
+    private Bounds lastBounds = new Bounds(Vector3.zero, Vector3.zero);
+    private Vector3 centerMass;
     private float spawnZone;
     private System.Random rand = new System.Random();
 
@@ -23,32 +38,20 @@ public class ProceduralGenerator : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        if (lastObject != null && lastObject.transform.position.z <= spawnZone)
+        if (lastObject == null || lastObject.transform.position.z <= spawnZone)
             SpawnTile();
-        else if (lastObject == null)
-        {
-            int randIndex = rand.Next(0, tileArray.Length - 1);
 
-            nextObject = tileArray[randIndex];
-
-            // RHS sets the start location of the scene treadmill.
-            nextObject.transform.localPosition = gameObject.transform.position;
-            lastObject = nextObject;
-
-            SpawnTile();
-        }
-
+        // Snippet below deletes any tiles that go out of camera.
         var it = loadedPrefabs.First;
-
         while (it != null)
         {
-            it.Value.transform.position -= transform.forward * tileSpeed * Time.deltaTime;
+            it.Value.obj.transform.position -= transform.forward * tileSpeed * Time.deltaTime;
 
-            if (Camera.main.WorldToScreenPoint(it.Value.transform.position).z < 0)
+            if (Camera.main.WorldToScreenPoint(it.Value.obj.transform.position).z + it.Value.bounds.extents.z < 0)
             {
                 var itNext = it.Next;
 
-                Destroy(it.Value);
+                Destroy(it.Value.obj);
                 loadedPrefabs.Remove(it);
                 it = itNext;
             }
@@ -57,20 +60,75 @@ public class ProceduralGenerator : MonoBehaviour
         }
 	}
 
+    /// <summary>
+    /// Creates a tile.
+    /// </summary>
     public void SpawnTile()
     {
-        GameObject temp;
-;       int randIndex = rand.Next(0, tileArray.Length - 1);
-        float objSpacing = nextObject.GetComponent<Renderer>().bounds.size.z / 2 + lastObject.GetComponent<MeshRenderer>().bounds.size.z / 2;
+        if (nextObject == null)
+            NextObject();
 
+        GameObject temp;
+        float objSpacing; 
+        
         temp = Instantiate(nextObject, gameObject.transform);
+        CenterOrigin(temp);
+        
+        if (lastObject == null)
+        {
+            objSpacing = nextBounds.extents.z + nextBounds.extents.z;
+            lastObject = gameObject;
+        }
+        else
+            objSpacing = nextBounds.extents.z + lastBounds.extents.z;
+
         temp.transform.position = lastObject.transform.position;
         temp.transform.position += new Vector3(0, 0, objSpacing);
 
         lastObject = temp;
-        loadedPrefabs.AddLast(lastObject);
+        lastBounds = nextBounds;
 
-        nextObject = tileArray[randIndex];
+        loadedPrefabs.AddLast(new ObjInstance(lastObject, lastBounds));
+
+        NextObject();
+
         spawnZone = transform.position.z - objSpacing;
+    }
+
+
+
+    /// <summary>
+    /// Sets 'nextObject' to a random prefab in 'tileArray'.
+    /// </summary>
+    private void NextObject()
+    {
+        int randIndex = rand.Next(0, tileArray.Length);
+        nextObject = tileArray[randIndex];
+    }
+
+    /// <summary>
+    /// This function moves the origin of the GameObject to the average center of all its children, if it has any.
+    /// </summary>
+    /// <param name="obj"></param>
+    private void CenterOrigin(GameObject obj)
+    {
+        var rArray = obj.GetComponentsInChildren<Renderer>();
+        centerMass = Vector3.zero;
+
+        foreach (Renderer r in rArray)
+        {
+            centerMass += r.transform.position;
+            r.transform.parent = null;
+        }
+
+        centerMass /= rArray.Length;
+        obj.transform.position = centerMass;
+        nextBounds = new Bounds(centerMass, Vector3.zero);
+
+        foreach (Renderer r in rArray)
+        {
+            r.transform.parent = obj.transform;
+            nextBounds.Encapsulate(r.bounds);
+        }
     }
 }
