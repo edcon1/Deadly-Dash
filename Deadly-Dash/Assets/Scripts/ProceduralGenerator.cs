@@ -122,13 +122,14 @@ public class ProceduralGenerator : MonoBehaviour
         }
 
         centerMass /= rArray.Length;
-        obj.transform.position = centerMass;
         nextBounds = new Bounds(centerMass, Vector3.zero);
 
         foreach (Renderer r in rArray)
-        {
-            r.transform.parent = obj.transform;
             nextBounds.Encapsulate(r.bounds);
-        }
+
+        obj.transform.position = new Vector3(centerMass.x, centerMass.y - nextBounds.extents.y, centerMass.z);
+
+        foreach (Renderer r in rArray)
+            r.transform.parent = obj.transform;
     }
 }
