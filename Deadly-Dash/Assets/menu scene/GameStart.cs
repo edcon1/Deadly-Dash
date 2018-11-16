@@ -21,5 +21,6 @@ public class GameStart : MonoBehaviour
     public void OnButtonClick()
     {
         SceneManager.LoadScene("Main scene", LoadSceneMode.Single);
+        Time.timeScale = 1f;
     }
 }
