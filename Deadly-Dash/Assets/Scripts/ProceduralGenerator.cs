@@ -16,12 +16,9 @@ public class ProceduralGenerator : MonoBehaviour
         public Bounds bounds;
     }
 
-    [Tooltip("This sets the speed of the map.")]
-    public float tileSpeed = 10;
     public GameObject[] tileArray;
 
     private LinkedList<ObjInstance> loadedPrefabs = new LinkedList<ObjInstance>();
-
     private GameObject nextObject;
     private GameObject lastObject;
     private Bounds nextBounds = new Bounds(Vector3.zero, Vector3.zero);
@@ -33,6 +30,10 @@ public class ProceduralGenerator : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
+        NextObject();
+
+        for (int i = 0; i < 10; ++i)
+            SpawnTile();
 	}
 	
 	// Update is called once per frame
@@ -45,9 +46,10 @@ public class ProceduralGenerator : MonoBehaviour
         var it = loadedPrefabs.First;
         while (it != null)
         {
-            it.Value.obj.transform.position -= transform.forward * tileSpeed * Time.deltaTime;
+            it.Value.obj.transform.position -= transform.forward * GlobalScript.WorldSpeed * Time.deltaTime;
+            Vector3 objPos = Camera.main.WorldToScreenPoint(it.Value.obj.transform.position);
 
-            if (Camera.main.WorldToScreenPoint(it.Value.obj.transform.position).z + it.Value.bounds.extents.z < 0)
+            if (objPos.z + it.Value.bounds.extents.z < 0)
             {
                 var itNext = it.Next;
 
@@ -65,9 +67,6 @@ public class ProceduralGenerator : MonoBehaviour
     /// </summary>
     public void SpawnTile()
     {
-        if (nextObject == null)
-            NextObject();
-
         GameObject temp;
         float objSpacing; 
         
@@ -77,7 +76,12 @@ public class ProceduralGenerator : MonoBehaviour
         if (lastObject == null)
         {
             objSpacing = nextBounds.extents.z + nextBounds.extents.z;
-            lastObject = gameObject;
+
+            GameObject goTemp = new GameObject();
+            lastObject = goTemp;
+            lastObject.transform.position = transform.position;
+            lastObject.transform.position -= new Vector3(0, 0, nextBounds.size.z * 10);
+            Destroy(goTemp, 3);
         }
         else
             objSpacing = nextBounds.extents.z + lastBounds.extents.z;
