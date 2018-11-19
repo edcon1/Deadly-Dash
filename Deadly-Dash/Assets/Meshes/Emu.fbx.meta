@@ -1,66 +1,18 @@
 fileFormatVersion: 2
-guid: 0132ad6a9ae6075448b03fae73c180d6
-timeCreated: 1542337716
+guid: d8831c550f3b88240b6e25d0d108d498
+timeCreated: 1542337057
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: body_jnt
-    100002: cork1_jnt1
-    100004: cork1_jnt2
-    100006: cork1_jnt3
-    100008: cork2_jnt1
-    100010: cork2_jnt2
-    100012: cork2_jnt3
-    100014: cork3_jnt1
-    100016: cork3_jnt2
-    100018: cork3_jnt3
-    100020: cork4_jnt1
-    100022: cork4_jnt2
-    100024: cork4_jnt3
-    100026: cork5_jnt1
-    100028: cork5_jnt2
-    100030: cork5_jnt3
-    100032: cork6_jnt1
-    100034: cork6_jnt2
-    100036: cork6_jnt3
-    100038: cork7_jnt1
-    100040: cork7_jnt2
-    100042: cork7_jnt3
-    100044: corkRoot_jnt
-    100046: mainRoot_jnt
-    100048: //RootNode
-    100050: SantaBike
-    400000: body_jnt
-    400002: cork1_jnt1
-    400004: cork1_jnt2
-    400006: cork1_jnt3
-    400008: cork2_jnt1
-    400010: cork2_jnt2
-    400012: cork2_jnt3
-    400014: cork3_jnt1
-    400016: cork3_jnt2
-    400018: cork3_jnt3
-    400020: cork4_jnt1
-    400022: cork4_jnt2
-    400024: cork4_jnt3
-    400026: cork5_jnt1
-    400028: cork5_jnt2
-    400030: cork5_jnt3
-    400032: cork6_jnt1
-    400034: cork6_jnt2
-    400036: cork6_jnt3
-    400038: cork7_jnt1
-    400040: cork7_jnt2
-    400042: cork7_jnt3
-    400044: corkRoot_jnt
-    400046: mainRoot_jnt
-    400048: //RootNode
-    400050: SantaBike
-    2100000: SantaBike_M
-    4300000: SantaBike
+    100000: //RootNode
+    400000: //RootNode
+    2100000: Eyebrows_lambert2SG1
+    2100002: lambert1
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Final
     9500000: //RootNode
-    13700000: SantaBike
   externalObjects: {}
   materials:
     importMaterials: 1

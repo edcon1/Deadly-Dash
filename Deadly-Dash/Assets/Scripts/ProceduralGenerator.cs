@@ -16,23 +16,47 @@ public class ProceduralGenerator : MonoBehaviour
         public Bounds bounds;
     }
 
-    [Tooltip("This sets the speed of the map.")]
-    public float tileSpeed = 10;
+    class TileCooldown
+    {
+        public TileCooldown(GameObject goType, int num)
+        {
+            gameObject = goType;
+            cooldown = num;
+        }
+
+        public GameObject gameObject;
+        public int cooldown;
+    }
+
     public GameObject[] tileArray;
+    [Tooltip("How many blank filler tiles are placed between the object tiles.")]
+    public int tileSpacing = 0;
+    [Tooltip("Doesn't allow an object tile to spawn again until this amount of other object tiles have spawned.")]
+    public int tileDownTime = 0;
 
     private LinkedList<ObjInstance> loadedPrefabs = new LinkedList<ObjInstance>();
-
+    private List<GameObject> avaliableTiles;
+    private List<TileCooldown> onDowntimeTiles = new List<TileCooldown>();
     private GameObject nextObject;
     private GameObject lastObject;
     private Bounds nextBounds = new Bounds(Vector3.zero, Vector3.zero);
     private Bounds lastBounds = new Bounds(Vector3.zero, Vector3.zero);
     private Vector3 centerMass;
     private float spawnZone;
+    private int blankCount = 10;
     private System.Random rand = new System.Random();
 
 	// Use this for initialization
 	void Start ()
     {
+        NextObject();
+        avaliableTiles = new List<GameObject>(tileArray);
+        avaliableTiles.RemoveAt(0);
+
+        tileDownTime *= tileSpacing + 1;
+
+        for (int i = 0; i < blankCount; ++i)
+            SpawnTile();
 	}
 	
 	// Update is called once per frame
@@ -45,9 +69,10 @@ public class ProceduralGenerator : MonoBehaviour
         var it = loadedPrefabs.First;
         while (it != null)
         {
-            it.Value.obj.transform.position -= transform.forward * tileSpeed * Time.deltaTime;
+            it.Value.obj.transform.position -= transform.forward * GlobalScript.WorldSpeed * Time.deltaTime;
+            Vector3 objPos = Camera.main.WorldToScreenPoint(it.Value.obj.transform.position);
 
-            if (Camera.main.WorldToScreenPoint(it.Value.obj.transform.position).z + it.Value.bounds.extents.z < 0)
+            if (objPos.z + it.Value.bounds.extents.z < 0)
             {
                 var itNext = it.Next;
 
@@ -65,19 +90,21 @@ public class ProceduralGenerator : MonoBehaviour
     /// </summary>
     public void SpawnTile()
     {
-        if (nextObject == null)
-            NextObject();
-
         GameObject temp;
-        float objSpacing; 
-        
+        float objSpacing;
+
         temp = Instantiate(nextObject, gameObject.transform);
         CenterOrigin(temp);
         
         if (lastObject == null)
         {
             objSpacing = nextBounds.extents.z + nextBounds.extents.z;
-            lastObject = gameObject;
+
+            GameObject goTemp = new GameObject();
+            lastObject = goTemp;
+            lastObject.transform.position = transform.position;
+            lastObject.transform.position -= new Vector3(0, 0, nextBounds.size.z * 10);
+            Destroy(goTemp, 3);
         }
         else
             objSpacing = nextBounds.extents.z + lastBounds.extents.z;
@@ -102,8 +129,23 @@ public class ProceduralGenerator : MonoBehaviour
     /// </summary>
     private void NextObject()
     {
-        int randIndex = rand.Next(0, tileArray.Length);
-        nextObject = tileArray[randIndex];
+        IterateCooldowns();
+
+        if (blankCount > 0 || avaliableTiles.Count == 0)
+        {
+            nextObject = tileArray[0];
+            blankCount--;
+        }
+        else
+        {
+            int randIndex = rand.Next(0, avaliableTiles.Count);
+
+            nextObject = avaliableTiles[randIndex];
+            blankCount = tileSpacing;
+
+            onDowntimeTiles.Add(new TileCooldown(nextObject, tileDownTime));
+            avaliableTiles.Remove(nextObject);
+        }
     }
 
     /// <summary>
@@ -131,5 +173,24 @@ public class ProceduralGenerator : MonoBehaviour
 
         foreach (Renderer r in rArray)
             r.transform.parent = obj.transform;
+    }
+
+    private void IterateCooldowns()
+    {
+        if (onDowntimeTiles.Count == 0)
+            return;
+
+        for (int i = 0; i < onDowntimeTiles.Count;)
+        {
+            onDowntimeTiles[i].cooldown--;
+
+            if (onDowntimeTiles[i].cooldown <= 0)
+            {
+                avaliableTiles.Add(onDowntimeTiles[i].gameObject);
+                onDowntimeTiles.RemoveAt(i);
+            }
+            else
+                ++i;
+        }
     }
 }
