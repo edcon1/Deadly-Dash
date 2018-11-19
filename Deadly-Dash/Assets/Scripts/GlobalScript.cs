@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class GlobalScript
-{ 
+{
+    public static string FinalPlayer = "";
+    public static float WorldSpeed = 10;
+
     private static string tableTag = "HS1_";
     private static string nameTag = "player";
     private static string scoreTag = "score";
     private static string defaultName = "RandomSanta";
-    private static string finalPlayer = "";
-    private static float finalScore = 10;
+    private static float finalScore = float.NaN;
 
     public static string TableTag
     {
@@ -27,12 +29,6 @@ public static class GlobalScript
     {
         get { return scoreTag; }
         private set { scoreTag = value; }
-    }
-
-    public static string FinalPlayer
-    {
-        get { return finalPlayer; }
-        set { finalPlayer = value; }
     }
 
     public static float FinalScore
