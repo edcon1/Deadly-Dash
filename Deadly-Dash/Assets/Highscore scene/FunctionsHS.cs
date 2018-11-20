@@ -148,7 +148,7 @@ public class FunctionsHS : MonoBehaviour
 
     private void CheckScore()
     {
-        if (float.IsNaN(GlobalScript.FinalScore) && GlobalScript.FinalScore > tableHS[9].playerScore)
+        if (float.IsNaN(GlobalScript.FinalScore) || GlobalScript.FinalScore <= tableHS[9].playerScore)
             return;
 
         Score[] tempHS = new Score[10];
