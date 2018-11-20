@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 33540588585792824}
   - component: {fileID: 23227996539703356}
   - component: {fileID: 95346355753651124}
+  - component: {fileID: 65489424235122792}
   m_Layer: 0
   m_Name: Mesh
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,9 +38,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4792292999318346}
+  - component: {fileID: 65117427943209196}
   m_Layer: 0
   m_Name: Dingo
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,6 +114,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1279276159113592}
   m_Mesh: {fileID: 4300000, guid: 7efd10c9303b8b74196dd73267f76516, type: 3}
+--- !u!65 &65117427943209196
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1987445161708356}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65489424235122792
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1279276159113592}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5484359, y: 0.9508932, z: 1.376652}
+  m_Center: {x: -0.00046665967, y: 0.45588258, z: 0.02023694}
 --- !u!95 &95346355753651124
 Animator:
   serializedVersion: 3

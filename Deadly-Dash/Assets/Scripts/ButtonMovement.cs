@@ -6,6 +6,19 @@ using UnityEngine.UI;
 public class ButtonMovement : MonoBehaviour
 {
 
+    [Tooltip("How fast the player will ascend while jumping.")]
+    public float jumpForce = 5;
+    [Tooltip("How long the player will be ascending for, in seconds.")]
+    public float jumpTime = 0.6f;
+    [Tooltip("How long the player will stay at the top of their jump for. It's to create a natural floaty feeling before falling. In seconds.")]
+    public float jumpApexTime = 0.017f;
+    [Tooltip("When falling, accelerates the player towards the ground at this percent of the jumpForce per second.")]
+    public float fallSpeedMulti = 0.08f;
+
+    private float groundPos;
+    private float jTimer;
+    private float fallVelocity;
+
     enum TargetPosition
     {
         Left,
@@ -46,28 +59,43 @@ public class ButtonMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        
         currentMoveTimer += Time.deltaTime;
         currentMoveTimer = Mathf.Clamp(currentMoveTimer, 0, MoveTime);
 
         float normalizedTime = currentMoveTimer / MoveTime;
 
         float normalizedMoveDistance = MoveCurve.Evaluate(normalizedTime);
-        transform.position = Vector3.Lerp(previousNode.transform.position, currentNode.transform.position, normalizedMoveDistance);
+        Vector3 targetPos = Vector3.Lerp(previousNode.transform.position, currentNode.transform.position, normalizedMoveDistance);
 
-        if(Input.GetKeyDown(KeyCode.LeftArrow))
+        
+
+        if (Input.GetKeyDown(KeyCode.Space) && transform.position.y == groundPos)
+            jTimer = jumpTime + jumpApexTime;
+
+
+        float posY = transform.position.y;
+        if (jTimer > jumpApexTime)
         {
-            MoveLeft();
+            posY += jumpForce * Time.deltaTime * (jTimer / jumpTime);
+            jTimer -= Time.deltaTime;
+        }
+        else if (jTimer > 0)
+        {
+            jTimer -= Time.deltaTime;
+            fallVelocity = 0;
+        }
+        else
+        {
+            posY -= fallVelocity;
+            fallVelocity += jumpForce * Time.deltaTime * fallSpeedMulti;
         }
 
-        if(Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            MoveRight();
-        }
-        //transform.position = Vector3.MoveTowards(transform.position, currentNode.transform.position, speed * Time.deltaTime);
-        //float remainingTravelDistance = Vector3.Distance(transform.position, currentNode.transform.position);
+        posY = Mathf.Max(posY, groundPos);
+        targetPos.y = posY;
 
 
-        //float travelPercent = remainingTravelDistance / travelNodeDistance;
+        transform.position = targetPos;
     }
 
     public void MoveLeft()
@@ -122,13 +150,7 @@ public class ButtonMovement : MonoBehaviour
         //transform.position = currentNode.transform.position;
     }
 
-    private void Jump()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            this.GetComponent<Rigidbody>().AddForce(Vector3.up * JumpPower, ForceMode.Impulse);
-        }
-    }
+  
 
 
 }

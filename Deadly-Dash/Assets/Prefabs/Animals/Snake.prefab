@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 33352385117228586}
   - component: {fileID: 23559420127686636}
   - component: {fileID: 95859661027354522}
+  - component: {fileID: 65687400582511802}
   m_Layer: 0
   m_Name: Mesh
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,9 +38,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4536069990603874}
+  - component: {fileID: 65388642157941224}
   m_Layer: 0
   m_Name: Snake
-  m_TagString: Untagged
+  m_TagString: Damage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,7 +53,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1345992935774964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.9300003, y: 0.16, z: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4918497671900974}
@@ -85,7 +87,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 0075e5b634cc4734eaabd779c6aa6883, type: 3}
+  - {fileID: 2100000, guid: cb5c08796fbd33447859588e65bec17c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -112,6 +114,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1157342628088492}
   m_Mesh: {fileID: 4300000, guid: 0075e5b634cc4734eaabd779c6aa6883, type: 3}
+--- !u!65 &65388642157941224
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1345992935774964}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65687400582511802
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1157342628088492}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 81.06921, y: 67.10451, z: 159.93109}
+  m_Center: {x: 14.211002, y: 33.009727, z: -12.182068}
 --- !u!95 &95859661027354522
 Animator:
   serializedVersion: 3
