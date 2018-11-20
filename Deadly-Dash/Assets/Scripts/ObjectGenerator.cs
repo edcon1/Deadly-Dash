@@ -15,9 +15,14 @@ public class ObjectGenerator : MonoBehaviour
 		foreach (Transform t in gameObject.GetComponentsInChildren<Transform>())
             if (t.gameObject.name.Contains("Node"))
             {
-                GameObject newObj = Instantiate(objectArray[randIndex.Next(0, objectArray.Length)], gameObject.transform);
-                newObj.transform.position = t.transform.position;
-                newObj.transform.rotation *= Quaternion.Euler(0, 180, 0);
+                GameObject prefab = objectArray[randIndex.Next(0, objectArray.Length)];
+                if(prefab != null)
+                {
+                    GameObject newObj = Instantiate(prefab, gameObject.transform);
+                    newObj.transform.localPosition = t.transform.localPosition;
+                    newObj.transform.rotation *= Quaternion.Euler(0, 180, 0);
+                }
+                
             }
 	}
 }
