@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 0075e5b634cc4734eaabd779c6aa6883
-timeCreated: 1542674068
+guid: dc0dfc0da2324f94bb40c2fd65c091d8
+timeCreated: 1542687846
 licenseType: Pro
 ModelImporter:
   serializedVersion: 22
@@ -17,7 +17,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Snake_material
-    second: {fileID: 2100000, guid: cb5c08796fbd33447859588e65bec17c, type: 2}
+    second: {fileID: 2100000, guid: cf2f1e9042a5a004dba12c610454dceb, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

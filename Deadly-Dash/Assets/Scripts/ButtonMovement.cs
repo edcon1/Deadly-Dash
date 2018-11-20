@@ -70,26 +70,28 @@ public class ButtonMovement : MonoBehaviour
 
         
 
-        if (Input.GetKeyDown(KeyCode.Space) && transform.position.y == groundPos)
+        if (Input.GetKeyDown(KeyCode.Space) && transform.position.y <= groundPos)
             jTimer = jumpTime + jumpApexTime;
+        
 
+            float posY = transform.position.y;
+            if (jTimer > jumpApexTime)
+            {
+                posY += jumpForce * Time.deltaTime * (jTimer / jumpTime);
+                jTimer -= Time.deltaTime;
+            }
+            else if (jTimer > 0)
+            {
+                jTimer -= Time.deltaTime;
+                fallVelocity = 0;
+            }
+            else
+            {
+                posY -= fallVelocity;
+                fallVelocity += jumpForce * Time.deltaTime * fallSpeedMulti;
+            }
 
-        float posY = transform.position.y;
-        if (jTimer > jumpApexTime)
-        {
-            posY += jumpForce * Time.deltaTime * (jTimer / jumpTime);
-            jTimer -= Time.deltaTime;
-        }
-        else if (jTimer > 0)
-        {
-            jTimer -= Time.deltaTime;
-            fallVelocity = 0;
-        }
-        else
-        {
-            posY -= fallVelocity;
-            fallVelocity += jumpForce * Time.deltaTime * fallSpeedMulti;
-        }
+        
 
         posY = Mathf.Max(posY, groundPos);
         targetPos.y = posY;
