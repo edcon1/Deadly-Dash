@@ -825,10 +825,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8690a2675e71870409b2673dac29f83e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpForce: 5
+  jumpTime: 0.6
+  jumpApexTime: 0.017
+  fallSpeedMulti: 0.08
   Left: {fileID: 1247828381533338, guid: ad8b97ab2c8c5594cb0881942d2d54d7, type: 2}
   Middle: {fileID: 1108019258990044, guid: 475ea3bb0ed29d348bcca85dcbfbbf8b, type: 2}
   Right: {fileID: 1253483350972446, guid: 8760c6c9af5c2804aa732424b869b63e, type: 2}
-  MoveTime: 0.5
+  MoveTime: 0.3
   JumpPower: 2
   MoveCurve:
     serializedVersion: 2
