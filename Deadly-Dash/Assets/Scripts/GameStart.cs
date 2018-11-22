@@ -5,22 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class GameStart : MonoBehaviour
 {
-
-	// Use this for initialization
-	void Start ()
-    {
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		
-	}
-
-    public void OnButtonClick()
+    public void OnClickPlay()
     {
         SceneManager.LoadScene("Main scene", LoadSceneMode.Single);
+        Time.timeScale = 1f;
+    }
+
+    public void OnClickHighScore()
+    {
+        SceneManager.LoadScene("HighScore", LoadSceneMode.Single);
         Time.timeScale = 1f;
     }
 }
