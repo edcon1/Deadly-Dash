@@ -7,9 +7,7 @@ using UnityEngine.UI;
 
 public class FunctionsHS : MonoBehaviour
 {
-    [Tooltip("Distance between the top of the screen and the title.")]
-    public int titleSpacing = 5;
-    [Tooltip("Distance between the bottom of the title and the top of the score table.")]
+    [Tooltip("Distance between the bottom of the title and the top of the screen.")]
     public int tableSpacing = 10;
     [Tooltip("Spacing between each row of scores.")]
     public int rowSpacing = 15;
@@ -27,7 +25,6 @@ public class FunctionsHS : MonoBehaviour
     private Text scoreTemplate;
     private Score[] tableHS = new Score[10];
     private List<Text> textArray = new List<Text>();
-    private Text title;
     private float canvasHeight;
     private float canvasWidth;
     private string pTag;
@@ -38,15 +35,16 @@ public class FunctionsHS : MonoBehaviour
     // Use this for initialization
     void Start ()
     {
-        title = GameObject.Find("TitleHS").GetComponent<Text>();
         posTemplate = GameObject.Find("PosText").GetComponent<Text>();
         nameTemplate = GameObject.Find("NameText").GetComponent<Text>();
         scoreTemplate = GameObject.Find("ScoreText").GetComponent<Text>();
 
+        foreach (Image im in gameObject.GetComponentsInChildren<Image>())
+            if (im.gameObject.name == "MenuButton")
+                im.alphaHitTestMinimumThreshold = 0.5f;
+
         canvasHeight = gameObject.GetComponent<RectTransform>().rect.height;
         canvasWidth = gameObject.GetComponent<RectTransform>().rect.width;
-
-        title.gameObject.transform.position = new Vector2(canvasWidth / 2, canvasHeight - titleSpacing);
 
         pTag = GlobalScript.TableTag + GlobalScript.NameTag;
         sTag = GlobalScript.TableTag + GlobalScript.ScoreTag;
@@ -93,7 +91,7 @@ public class FunctionsHS : MonoBehaviour
     private void DrawTable()
     {
         float spacing = posTemplate.fontSize + rowSpacing;
-        float baseHeight = title.gameObject.transform.localPosition.y - title.rectTransform.rect.height - posTemplate.fontSize - tableSpacing;
+        float baseHeight = canvasHeight / 2 - tableSpacing - posTemplate.fontSize;
 
         for (int i = 0; i < 10; ++i)
         {
@@ -148,7 +146,7 @@ public class FunctionsHS : MonoBehaviour
 
     private void CheckScore()
     {
-        if (float.IsNaN(GlobalScript.FinalScore) && GlobalScript.FinalScore > tableHS[9].playerScore)
+        if (float.IsNaN(GlobalScript.FinalScore) || GlobalScript.FinalScore <= tableHS[9].playerScore)
             return;
 
         Score[] tempHS = new Score[10];

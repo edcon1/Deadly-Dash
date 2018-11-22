@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(Rigidbody))]
 public class DeathMenu : MonoBehaviour
 {
 
@@ -13,8 +15,13 @@ public class DeathMenu : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-	 
-	}
+        foreach (Image ri in gameObject.GetComponentsInChildren<Image>())
+        {
+            if (ri.gameObject.name == "Restart" || ri.gameObject.name == "HighScore" || ri.gameObject.name == "Quit")
+                ri.alphaHitTestMinimumThreshold = 0.5f;
+        }
+        DeathMenuUI.SetActive(false);
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -49,7 +56,10 @@ public class DeathMenu : MonoBehaviour
     {
         if (other.gameObject.tag == "Damage")
         {
-            Death();
+            if (PlayerPrefs.GetFloat(GlobalScript.TableTag + GlobalScript.ScoreTag + 9, float.NaN) < GlobalScript.FinalScore)
+                SceneManager.LoadScene("NewHScore",  LoadSceneMode.Single);
+            else
+                Death();
         }
         Debug.Log("good");
     }
