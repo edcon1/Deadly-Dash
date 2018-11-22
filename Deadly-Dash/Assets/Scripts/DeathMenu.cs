@@ -56,7 +56,10 @@ public class DeathMenu : MonoBehaviour
     {
         if (other.gameObject.tag == "Damage")
         {
-            Death();
+            if (PlayerPrefs.GetFloat(GlobalScript.TableTag + GlobalScript.ScoreTag + 9, float.NaN) < GlobalScript.FinalScore)
+                SceneManager.LoadScene("NewHScore",  LoadSceneMode.Single);
+            else
+                Death();
         }
         Debug.Log("good");
     }
