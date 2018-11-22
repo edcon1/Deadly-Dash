@@ -15,7 +15,7 @@ public class PauseMenu : MonoBehaviour
     {
         foreach (Image ri in gameObject.GetComponentsInChildren<Image>())
         {
-            if (ri.gameObject.name == "Resume" || ri.gameObject.name == "HighScore" || ri.gameObject.name == "Quit")
+            if (ri.gameObject.name == "Resume" || ri.gameObject.name == "HighScore" || ri.gameObject.name == "Quit" || ri.gameObject.name == "Restart")
                 ri.alphaHitTestMinimumThreshold = 0.5f;
         }
         pauseMenuUI.SetActive(false);
