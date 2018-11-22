@@ -26,7 +26,7 @@ public class FunctionsHS : MonoBehaviour
     private Score[] tableHS = new Score[10];
     private List<Text> textArray = new List<Text>();
     private float canvasHeight;
-    private float canvasWidth;
+    //private float canvasWidth;
     private string pTag;
     private string sTag;
     private float resetTimer = 0;
@@ -44,7 +44,7 @@ public class FunctionsHS : MonoBehaviour
                 im.alphaHitTestMinimumThreshold = 0.5f;
 
         canvasHeight = gameObject.GetComponent<RectTransform>().rect.height;
-        canvasWidth = gameObject.GetComponent<RectTransform>().rect.width;
+        //canvasWidth = gameObject.GetComponent<RectTransform>().rect.width;
 
         pTag = GlobalScript.TableTag + GlobalScript.NameTag;
         sTag = GlobalScript.TableTag + GlobalScript.ScoreTag;

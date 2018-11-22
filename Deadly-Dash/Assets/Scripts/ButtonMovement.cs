@@ -54,6 +54,7 @@ public class ButtonMovement : MonoBehaviour
         currentNode = Middle;
         previousNode = currentNode;
         transform.position = Middle.transform.position;
+        groundPos = transform.position.y;
 	}
 	
 	// Update is called once per frame
