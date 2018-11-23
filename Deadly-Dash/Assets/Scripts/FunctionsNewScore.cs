@@ -24,7 +24,7 @@ public class FunctionsNewScore : MonoBehaviour
 
         foreach (Text txt in gameObject.GetComponentsInChildren<Text>())
             if (txt.gameObject.name == "ScoreText")
-                txt.text = GlobalScript.FinalScore.ToString();
+                txt.text = GlobalScript.FinalScore.ToString() + " KM";
 
         foreach (RectTransform rect in gameObject.GetComponentsInChildren<RectTransform>())
             if (rect.gameObject.name == "DeathScreen")

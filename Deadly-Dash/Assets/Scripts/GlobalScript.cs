@@ -11,6 +11,7 @@ public static class GlobalScript
     private static string nameTag = "player";
     private static string scoreTag = "score";
     private static string defaultName = "RandomSanta";
+    private static float defaultWorldSpeed = 10;
     private static float finalScore = float.NaN;
 
     public static string TableTag
@@ -41,5 +42,10 @@ public static class GlobalScript
     {
         get { return defaultName; }
         private set { defaultName = value; }
+    }
+
+    public static void SetDefaultWorldSpeed()
+    {
+        WorldSpeed = defaultWorldSpeed;
     }
 }
