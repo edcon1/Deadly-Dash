@@ -48,9 +48,9 @@ public class DeathMenu : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Damage")
-        {
+         {
             Death();
         }
-        Debug.Log("good");
+      
     }
 }
