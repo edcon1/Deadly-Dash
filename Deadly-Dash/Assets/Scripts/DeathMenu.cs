@@ -70,6 +70,7 @@ public class DeathMenu : MonoBehaviour
     {
         if (other.gameObject.tag == "Damage")
         {
+            GlobalScript.WorldSpeed = 10;
             GlobalScript.FinalScore = scoreSys.Score;
             SceneManager.LoadScene("NewHScore",  LoadSceneMode.Single);
         }
