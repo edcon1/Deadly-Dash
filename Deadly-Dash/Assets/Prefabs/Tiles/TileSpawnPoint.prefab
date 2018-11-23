@@ -177,3 +177,5 @@ MonoBehaviour:
   - {fileID: 1865442411320598, guid: f731483bbf1b4314d9057f37acb912e3, type: 2}
   - {fileID: 1343680194509098, guid: 30fffc5e68c075045bc823d6cb7ac428, type: 2}
   - {fileID: 1695462640962900, guid: 7488b4a69204b2c4ea2d25adc6536d0b, type: 2}
+  tileSpacing: 0
+  tileDownTime: 0
