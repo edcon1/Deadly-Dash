@@ -116,12 +116,30 @@ public class FunctionsHS : MonoBehaviour
 
     private void InitiateTable()
     {
+        string setName;
+        float setScore;
+
         for (int i = 0; i < 10; ++i)
         {
-            PlayerPrefs.SetString(pTag + i, "Player" + i);
-            PlayerPrefs.SetFloat(sTag + i, 0);
+            switch(i)
+            {
+                case 0: { setName = "Hayley"; setScore = 130; break; }
+                case 1: { setName = "Hoson"; setScore = 130; break; }
+                case 2: { setName = "Ed"; setScore = 120; break; }
+                case 3: { setName = "Dextar"; setScore = 120; break; }
+                case 4: { setName = "Saint Nick"; setScore = 100; break; }
+                case 5: { setName = "Satan"; setScore = 66; break; }
+                case 6: { setName = "Daddy Frost"; setScore = 50; break; }
+                case 7: { setName = "Fat Santa"; setScore = 40; break; }
+                case 8: { setName = "Mall Santa"; setScore = 30; break; }
+                case 9: { setName = "Nat"; setScore = 1; break; }
+                default: { setName = "ERROR"; setScore = float.NaN; break; }
+            }
 
-            tableHS[i] = new Score("Player" + i, 0);
+            PlayerPrefs.SetString(pTag + i, setName);
+            PlayerPrefs.SetFloat(sTag + i, setScore);
+
+            tableHS[i] = new Score(setName, setScore);
         }
     }
 
