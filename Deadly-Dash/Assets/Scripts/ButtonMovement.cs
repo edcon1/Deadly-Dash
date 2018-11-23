@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor.SceneManagement;
 
 public class ButtonMovement : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class ButtonMovement : MonoBehaviour
     public float jumpApexTime = 0.017f;
     [Tooltip("When falling, accelerates the player towards the ground at this percent of the jumpForce per second.")]
     public float fallSpeedMulti = 0.08f;
+    [Tooltip("How fast the player accelerates per second.")]
+    public float acceleration = 0;
 
     private float groundPos;
     private float jTimer;
@@ -36,11 +39,9 @@ public class ButtonMovement : MonoBehaviour
     [Range(1,30)]
     public float JumpPower = 2;
 
-
-
     private GameObject currentNode;
     private GameObject previousNode;
-
+    
     private TargetPosition currentPosition = TargetPosition.Middle;
 
     public AnimationCurve MoveCurve;
@@ -60,7 +61,9 @@ public class ButtonMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
-        
+        GlobalScript.WorldSpeed = GlobalScript.WorldSpeed + acceleration * Time.deltaTime;
+        Debug.Log(GlobalScript.WorldSpeed.ToString());
+
         currentMoveTimer += Time.deltaTime;
         currentMoveTimer = Mathf.Clamp(currentMoveTimer, 0, MoveTime);
 
@@ -152,8 +155,4 @@ public class ButtonMovement : MonoBehaviour
         }
         //transform.position = currentNode.transform.position;
     }
-
-  
-
-
 }
