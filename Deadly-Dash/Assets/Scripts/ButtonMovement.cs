@@ -62,7 +62,6 @@ public class ButtonMovement : MonoBehaviour
 	void Update ()
     {
         GlobalScript.WorldSpeed = GlobalScript.WorldSpeed + acceleration * Time.deltaTime;
-        Debug.Log(GlobalScript.WorldSpeed.ToString());
 
         currentMoveTimer += Time.deltaTime;
         currentMoveTimer = Mathf.Clamp(currentMoveTimer, 0, MoveTime);

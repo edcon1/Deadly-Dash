@@ -11,7 +11,8 @@ public class DeathMenu : MonoBehaviour
     public GameObject DeathMenuUI;
     public static bool IsPlayerDead = false;
 
-    private ScoreSystem scoreSys;
+    private ScoreSystem scoreSys = null;
+    //private RectTransform deathPanel = null;
 
     // Use this for initialization
     void Start ()
@@ -21,13 +22,17 @@ public class DeathMenu : MonoBehaviour
                 ri.alphaHitTestMinimumThreshold = 0.5f;
 
         foreach (GameObject go in SceneManager.GetActiveScene().GetRootGameObjects())
-            foreach (Text txt in go.GetComponentsInChildren<Text>())
-                if (txt.name == "KMsText")
-                {
-                    scoreSys = new ScoreSystem(txt);
-                    goto BREAKLOOP;
-                }
-        BREAKLOOP:
+        {
+            
+            foreach (Transform child in go.GetComponentsInChildren<Transform>())
+            {
+                if (scoreSys == null && child.name == "KMsText")
+                    scoreSys = new ScoreSystem(child.GetComponent<Text>());
+
+                //if (deathPanel == null && child.name == "DeathPanel")
+                //    deathPanel = child.GetComponent<RectTransform>();
+            }
+        }
 
         DeathMenuUI.SetActive(false);
     }
@@ -66,11 +71,7 @@ public class DeathMenu : MonoBehaviour
         if (other.gameObject.tag == "Damage")
         {
             GlobalScript.FinalScore = scoreSys.Score;
-
-            if (PlayerPrefs.GetFloat(GlobalScript.TableTag + GlobalScript.ScoreTag + 9, float.NaN) < GlobalScript.FinalScore)
-                SceneManager.LoadScene("NewHScore",  LoadSceneMode.Single);
-            else
-                Death();
+            SceneManager.LoadScene("NewHScore",  LoadSceneMode.Single);
         }
     }
 }
