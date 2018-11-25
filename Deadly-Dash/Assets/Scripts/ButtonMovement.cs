@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
 
 public class ButtonMovement : MonoBehaviour
 {
@@ -74,27 +74,30 @@ public class ButtonMovement : MonoBehaviour
         
 
         if (Input.GetKeyDown(KeyCode.Space) && transform.position.y <= groundPos)
+        {
             jTimer = jumpTime + jumpApexTime;
-        
+            fallVelocity = 0;
+        }
 
-            float posY = transform.position.y;
-            if (jTimer > jumpApexTime)
-            {
-                posY += jumpForce * Time.deltaTime * (jTimer / jumpTime);
-                jTimer -= Time.deltaTime;
-            }
-            else if (jTimer > 0)
-            {
-                jTimer -= Time.deltaTime;
-                fallVelocity = 0;
-            }
-            else
-            {
-                posY -= fallVelocity;
-                fallVelocity += jumpForce * Time.deltaTime * fallSpeedMulti;
-            }
+        float posY = transform.position.y;
 
+        if (Input.GetKey(KeyCode.Space) == false && transform.position.y > groundPos)
+            jTimer = 0;
         
+        if (jTimer > jumpApexTime)
+        {
+            posY += jumpForce * Time.deltaTime * (jTimer / jumpTime);
+            jTimer -= Time.deltaTime;
+        }
+        else if (jTimer > 0)
+        {
+            jTimer -= Time.deltaTime;
+        }
+        else
+        {
+            posY -= fallVelocity;
+            fallVelocity += jumpForce * Time.deltaTime * fallSpeedMulti;
+        }
 
         posY = Mathf.Max(posY, groundPos);
         targetPos.y = posY;
