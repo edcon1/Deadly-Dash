@@ -167,7 +167,7 @@ public class ButtonMovement : MonoBehaviour
 
     public void MoveLeft()
     {
-        if (currentMoveTimer < MoveTime - 0.001f) return;
+        //if (currentMoveTimer < MoveTime - 0.001f) return;
         if(currentPosition == TargetPosition.Middle)
         {
             SetTarget(TargetPosition.Left); 
@@ -179,7 +179,7 @@ public class ButtonMovement : MonoBehaviour
     }
     public void MoveRight()
     {
-        if (currentMoveTimer < MoveTime - 0.001f) return;
+        //if (currentMoveTimer < MoveTime - 0.001f) return;
         if (currentPosition == TargetPosition.Middle)
         {
             
