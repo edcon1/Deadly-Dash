@@ -43,7 +43,7 @@ public class ProceduralGenerator : MonoBehaviour
     private Bounds lastBounds = new Bounds(Vector3.zero, Vector3.zero);
     private Vector3 centerMass;
     private float spawnZone;
-    private int blankCount = 10;
+    private int blankCount = 30;
     private System.Random rand = new System.Random();
 
 	// Use this for initialization
@@ -103,7 +103,7 @@ public class ProceduralGenerator : MonoBehaviour
             GameObject goTemp = new GameObject();
             lastObject = goTemp;
             lastObject.transform.position = transform.position;
-            lastObject.transform.position -= new Vector3(0, 0, nextBounds.size.z * 10);
+            lastObject.transform.position -= new Vector3(0, 0, nextBounds.size.z * blankCount);
             Destroy(goTemp, 3);
         }
         else

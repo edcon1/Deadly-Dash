@@ -46,6 +46,9 @@ public class ButtonMovement : MonoBehaviour
 
     private float currentMoveTimer = 0;
 
+    public float TapDistance = 10;
+    private Vector2 startTouchPosition = new Vector2();
+
 	// Use this for initialization
 	void Start ()
     {
@@ -58,6 +61,66 @@ public class ButtonMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
     {
+        //for(int i = 0;i < Input.touchCount;++i)
+        //{
+        //
+        //}
+
+        if (Input.touchCount > 0)
+        {
+            Touch t = Input.touches[0];
+            if (t.phase == TouchPhase.Began)
+            {
+                Debug.Log("hit");
+                startTouchPosition = t.position;
+            }
+            else if (t.phase == TouchPhase.Canceled || t.phase == TouchPhase.Ended)
+            {
+                Vector2 releasePos = t.position;
+                Vector2 swipeOffset = releasePos - startTouchPosition;
+                if (swipeOffset.magnitude < TapDistance)
+                {
+                    if (startTouchPosition.x < Screen.width * 0.5f)
+                    {
+                        MoveLeft();
+                    }
+                    else
+                    {
+                        MoveRight();
+                    }
+                }
+                else
+                {
+                    float fUp = Vector2.Dot(swipeOffset, Vector2.up);
+                    float fDown = Vector2.Dot(swipeOffset, Vector2.down);
+
+                    float fLeft = Vector2.Dot(swipeOffset, Vector2.left);
+                    float fRight = Vector2.Dot(swipeOffset, Vector2.right);
+
+                    if (fLeft > fRight && fLeft > fDown && fLeft > fUp)
+                    {
+                        MoveLeft();
+                    }
+                    else if (fRight > fLeft && fRight > fDown && fRight > fUp)
+                    {
+                        MoveRight();
+                    }
+                    else if (fUp > fLeft && fUp > fRight && fUp > fDown)
+                    {
+                        DoJump();
+                    }
+                    else if (fDown > fLeft && fDown > fRight && fDown > fUp)
+                    {
+                        if (transform.position.y > groundPos)
+                        {
+                            jTimer = 0;
+                        }
+                    }
+                }
+            }
+
+        }
+
         GlobalScript.WorldSpeed = GlobalScript.WorldSpeed + acceleration * Time.deltaTime;
 
         currentMoveTimer += Time.deltaTime;
@@ -68,19 +131,9 @@ public class ButtonMovement : MonoBehaviour
         float normalizedMoveDistance = MoveCurve.Evaluate(normalizedTime);
         Vector3 targetPos = Vector3.Lerp(previousNode.transform.position, currentNode.transform.position, normalizedMoveDistance);
 
-        
-
-        if (Input.GetKeyDown(KeyCode.Space) && transform.position.y <= groundPos)
-        {
-            jTimer = jumpTime + jumpApexTime;
-            fallVelocity = 0;
-        }
 
         float posY = transform.position.y;
 
-        if (Input.GetKey(KeyCode.Space) == false && transform.position.y > groundPos)
-            jTimer = 0;
-        
         if (jTimer > jumpApexTime)
         {
             posY += jumpForce * Time.deltaTime * (jTimer / jumpTime);
@@ -101,6 +154,15 @@ public class ButtonMovement : MonoBehaviour
 
 
         transform.position = targetPos;
+    }
+
+    private void DoJump()
+    {
+        if (transform.position.y <= groundPos)
+        {
+            jTimer = jumpTime + jumpApexTime;
+            fallVelocity = 0;
+        }
     }
 
     public void MoveLeft()
