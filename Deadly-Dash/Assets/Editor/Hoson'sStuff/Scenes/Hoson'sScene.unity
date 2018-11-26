@@ -169,6 +169,11 @@ Prefab:
       propertyPath: DeathMenuUI
       value: 
       objectReference: {fileID: 406673030}
+    - target: {fileID: 114997009565665142, guid: 1d8d3f6165227274abf404f362828fa3,
+        type: 2}
+      propertyPath: nextHS
+      value: 
+      objectReference: {fileID: 1419345561}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1d8d3f6165227274abf404f362828fa3, type: 2}
   m_IsPrefabParent: 0
@@ -786,6 +791,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68024d7ed61a8e641903ac281e64489c, type: 3}
   m_IsPrefabParent: 0
+--- !u!114 &1419345561 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114863966358525526, guid: 8c9d1b62f781a38409ea3a02555bd338,
+    type: 2}
+  m_PrefabInternal: {fileID: 1201511415}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1645192956
 Prefab:
   m_ObjectHideFlags: 0
