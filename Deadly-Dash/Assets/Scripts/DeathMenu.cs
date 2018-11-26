@@ -9,8 +9,10 @@ public class DeathMenu : MonoBehaviour
 {
 
     public GameObject DeathMenuUI;
+    public Text nextHS;
     public static bool IsPlayerDead = false;
 
+    private List<float> highScores = new List<float>();
     private ScoreSystem scoreSys = null;
     //private RectTransform deathPanel = null;
 
@@ -22,17 +24,12 @@ public class DeathMenu : MonoBehaviour
                 ri.alphaHitTestMinimumThreshold = 0.5f;
 
         foreach (GameObject go in SceneManager.GetActiveScene().GetRootGameObjects())
-        {
-            
             foreach (Transform child in go.GetComponentsInChildren<Transform>())
-            {
                 if (scoreSys == null && child.name == "KMsText")
                     scoreSys = new ScoreSystem(child.GetComponent<Text>());
 
-                //if (deathPanel == null && child.name == "DeathPanel")
-                //    deathPanel = child.GetComponent<RectTransform>();
-            }
-        }
+        for (int i = 0; i < 10; ++i)
+            highScores.Add(PlayerPrefs.GetFloat(GlobalScript.TableTag + GlobalScript.ScoreTag + i, float.NaN));
 
         DeathMenuUI.SetActive(false);
     }
@@ -41,6 +38,19 @@ public class DeathMenu : MonoBehaviour
 	void Update ()
     {
         scoreSys.Update();
+
+        for (int i = 0; i < 10; ++i)
+            if (scoreSys.Score > highScores[i])
+            {
+                if (i <= 0)
+                    nextHS.text = "New record for Santa Kind!: " + (int)scoreSys.Score + " KM";
+                else
+                    nextHS.text = "Next stop: " + highScores[i - 1] + " KM";
+
+                break;
+            }
+            else
+                nextHS.text = "Next stop: " + highScores[9] + " KM";
 	}
 
     public void triggerDeath()
