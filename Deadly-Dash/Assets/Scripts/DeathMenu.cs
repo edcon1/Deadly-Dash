@@ -45,12 +45,12 @@ public class DeathMenu : MonoBehaviour
                 if (i <= 0)
                     nextHS.text = "New record for Santa Kind!: " + (int)scoreSys.Score + " KM";
                 else
-                    nextHS.text = "Next stop: " + highScores[i - 1] + " KM";
+                    nextHS.text = highScores[i - 1] + " KM";
 
                 break;
             }
             else
-                nextHS.text = "Next stop: " + highScores[9] + " KM";
+                nextHS.text = highScores[9] + " KM";
 	}
 
     public void triggerDeath()
