@@ -14,6 +14,10 @@ public class ButtonMovement : MonoBehaviour
     public float fallSpeedMulti = 0.08f;
     [Tooltip("How fast the player accelerates per second.")]
     public float acceleration = 0;
+    [Tooltip("Starting speed")]
+    public float startSpeed = 10;
+    [Tooltip("Max speed for the player")]
+    public float maxSpeed = 30;
 
     private float groundPos;
     private float jTimer;
@@ -56,6 +60,8 @@ public class ButtonMovement : MonoBehaviour
         previousNode = currentNode;
         transform.position = Middle.transform.position;
         groundPos = transform.position.y;
+
+        GlobalScript.WorldSpeed = startSpeed;
 	}
 	
 	// Update is called once per frame
@@ -122,6 +128,7 @@ public class ButtonMovement : MonoBehaviour
         }
 
         GlobalScript.WorldSpeed = GlobalScript.WorldSpeed + acceleration * Time.deltaTime;
+        GlobalScript.WorldSpeed = Mathf.Min(GlobalScript.WorldSpeed, maxSpeed);
 
         currentMoveTimer += Time.deltaTime;
         currentMoveTimer = Mathf.Clamp(currentMoveTimer, 0, MoveTime);
