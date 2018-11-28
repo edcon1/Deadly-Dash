@@ -274,7 +274,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: EndLesftSpawnPoint
+      value: Tile Left 3
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
@@ -410,6 +410,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
+      propertyPath: m_Name
+      value: RoadSpawnTile
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
   m_IsPrefabParent: 0
@@ -420,6 +424,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
+        type: 2}
+      propertyPath: tileArray.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4724563934581256, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_LocalPosition.x
       value: -3.996
@@ -454,18 +463,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: TileSpawnPoint (1)
+      value: Tile Left 1
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[0]
       value: 
-      objectReference: {fileID: 100000, guid: abbc00039a1e1be479aa223be24d0f80, type: 3}
+      objectReference: {fileID: 1530316479982026, guid: 5368911e9e913a04a8040f612e3138f2,
+        type: 2}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[1]
       value: 
-      objectReference: {fileID: 100000, guid: abbc00039a1e1be479aa223be24d0f80, type: 3}
+      objectReference: {fileID: 1041318655146142, guid: 39a572e153caefc468c54480cb92c57c,
+        type: 2}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[2]
@@ -490,6 +501,11 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
+        type: 2}
+      propertyPath: tileSpacing
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
@@ -628,7 +644,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: EndLesftSpawnPoint (2)
+      value: Tile Left 5
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
@@ -1001,7 +1017,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: TileSpawnPoint (8)
+      value: Tile Right 7
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
@@ -1455,6 +1471,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
+        type: 2}
+      propertyPath: tileArray.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4724563934581256, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3.95
@@ -1489,28 +1510,30 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: TileSpawnPoint (9)
+      value: Tile Right 1
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[0]
       value: 
-      objectReference: {fileID: 100000, guid: abbc00039a1e1be479aa223be24d0f80, type: 3}
+      objectReference: {fileID: 1530316479982026, guid: 5368911e9e913a04a8040f612e3138f2,
+        type: 2}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[1]
       value: 
-      objectReference: {fileID: 100000, guid: abbc00039a1e1be479aa223be24d0f80, type: 3}
+      objectReference: {fileID: 1041318655146142, guid: c98f937c2076c554d86b4ebc867314d4,
+        type: 2}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[2]
       value: 
-      objectReference: {fileID: 100000, guid: abbc00039a1e1be479aa223be24d0f80, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[3]
       value: 
-      objectReference: {fileID: 100000, guid: abbc00039a1e1be479aa223be24d0f80, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[4]
@@ -1524,6 +1547,16 @@ Prefab:
     - target: {fileID: 23233743466235348, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
+        type: 2}
+      propertyPath: tileSpacing
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
+        type: 2}
+      propertyPath: tileDownTime
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1690,7 +1723,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: TileSpawnPoint (4)
+      value: Tile Right 4
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
@@ -5890,7 +5923,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: TileSpawnPoint (7)
+      value: Tile Right 6
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
@@ -5937,6 +5970,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
+        type: 2}
+      propertyPath: tileArray.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4724563934581256, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_LocalPosition.x
       value: -7.88
@@ -5971,18 +6009,20 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: TileSpawnPoint (5)
+      value: Tile Left 2
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[0]
       value: 
-      objectReference: {fileID: 100000, guid: abbc00039a1e1be479aa223be24d0f80, type: 3}
+      objectReference: {fileID: 1530316479982026, guid: 5368911e9e913a04a8040f612e3138f2,
+        type: 2}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[1]
       value: 
-      objectReference: {fileID: 100000, guid: abbc00039a1e1be479aa223be24d0f80, type: 3}
+      objectReference: {fileID: 1041318655146142, guid: c98f937c2076c554d86b4ebc867314d4,
+        type: 2}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[2]
@@ -6007,6 +6047,11 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
+        type: 2}
+      propertyPath: tileSpacing
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
@@ -6094,7 +6139,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: TileSpawnPoint (6)
+      value: Tile Right 5
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
@@ -6402,7 +6447,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: EndLesftSpawnPoint (1)
+      value: Tile Left 4
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
@@ -6483,7 +6528,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: EndLesftSpawnPoint (3)
+      value: Tile Left 6
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
@@ -6780,6 +6825,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
+        type: 2}
+      propertyPath: tileArray.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4724563934581256, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_LocalPosition.x
       value: 7.9
@@ -6814,23 +6864,26 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: TileSpawnPoint (3)
+      value: Tile Right 3
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[0]
       value: 
-      objectReference: {fileID: 100000, guid: abbc00039a1e1be479aa223be24d0f80, type: 3}
+      objectReference: {fileID: 1530316479982026, guid: 5368911e9e913a04a8040f612e3138f2,
+        type: 2}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[1]
       value: 
-      objectReference: {fileID: 100000, guid: abbc00039a1e1be479aa223be24d0f80, type: 3}
+      objectReference: {fileID: 1041318655146142, guid: c98f937c2076c554d86b4ebc867314d4,
+        type: 2}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[2]
       value: 
-      objectReference: {fileID: 100000, guid: abbc00039a1e1be479aa223be24d0f80, type: 3}
+      objectReference: {fileID: 1041318655146142, guid: c98f937c2076c554d86b4ebc867314d4,
+        type: 2}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[3]
@@ -6850,6 +6903,11 @@ Prefab:
         type: 2}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
+        type: 2}
+      propertyPath: tileSpacing
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
@@ -7176,6 +7234,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
+        type: 2}
+      propertyPath: tileArray.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4724563934581256, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_LocalPosition.x
       value: 3.980011
@@ -7210,7 +7273,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1848282230300934, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_Name
-      value: TileSpawnPoint (2)
+      value: Tile Right 2
       objectReference: {fileID: 0}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
@@ -7221,7 +7284,8 @@ Prefab:
         type: 2}
       propertyPath: tileArray.Array.data[1]
       value: 
-      objectReference: {fileID: 100000, guid: abbc00039a1e1be479aa223be24d0f80, type: 3}
+      objectReference: {fileID: 1041318655146142, guid: c98f937c2076c554d86b4ebc867314d4,
+        type: 2}
     - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
         type: 2}
       propertyPath: tileArray.Array.data[2]
@@ -7258,6 +7322,11 @@ Prefab:
     - target: {fileID: 4724563934581256, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
       propertyPath: m_LocalScale.z
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114272440316494416, guid: d04259a31db43a84bb6ab37b31a1e803,
+        type: 2}
+      propertyPath: tileSpacing
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d04259a31db43a84bb6ab37b31a1e803, type: 2}
