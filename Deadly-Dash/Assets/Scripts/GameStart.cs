@@ -30,12 +30,15 @@ public class GameStart : MonoBehaviour
         switchingScene = true;
 
         EngineRevAudioController controller = engineRevAudio.GetComponent<EngineRevAudioController>();
-        StartCoroutine(controller.RunSceneTransition());
+        controller.Test();
 
         yield return new WaitForSeconds(1.0f);
-        ////engineRevAudio.Stop();
         SceneManager.LoadScene("Main scene", LoadSceneMode.Single);
         Time.timeScale = 1f;
+        //engineRevAudio.Stop();
         switchingScene = false;
+       
+
     }
+
 }

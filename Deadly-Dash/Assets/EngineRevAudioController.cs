@@ -5,7 +5,7 @@ using UnityEngine;
 public class EngineRevAudioController : MonoBehaviour
 {
     public AnimationCurve engineRevVolume;
-
+  
     // Use this for initialization
     public IEnumerator RunSceneTransition()
     {
@@ -25,7 +25,11 @@ public class EngineRevAudioController : MonoBehaviour
         }
         Destroy(gameObject);
 
+    }
 
+    public void Test()
+    {
+        StartCoroutine(RunSceneTransition());
     }
 
 }
