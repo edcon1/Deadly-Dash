@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProceduralGenerator : MonoBehaviour
 {
-    struct ObjInstance
+    public struct ObjInstance
     {
         public ObjInstance(GameObject g, Bounds b)
         {
@@ -33,6 +33,8 @@ public class ProceduralGenerator : MonoBehaviour
     public int tileSpacing = 0;
     [Tooltip("Doesn't allow an object tile to spawn again until this amount of other object tiles have spawned.")]
     public int tileDownTime = 0;
+    [Tooltip("Spawns this many filler tiles at the start of the game.")]
+    public int blankCount = 30;
 
     private LinkedList<ObjInstance> loadedPrefabs = new LinkedList<ObjInstance>();
     private List<GameObject> avaliableTiles;
@@ -43,8 +45,13 @@ public class ProceduralGenerator : MonoBehaviour
     private Bounds lastBounds = new Bounds(Vector3.zero, Vector3.zero);
     private Vector3 centerMass;
     private float spawnZone;
-    private int blankCount = 30;
     private System.Random rand = new System.Random();
+
+    public LinkedList<ObjInstance> LoadedPrefabs
+    {
+        get { return loadedPrefabs; }
+        private set { loadedPrefabs = value; }
+    }
 
 	// Use this for initialization
 	void Start ()

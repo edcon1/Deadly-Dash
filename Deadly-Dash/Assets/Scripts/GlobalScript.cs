@@ -44,6 +44,11 @@ public static class GlobalScript
         private set { defaultName = value; }
     }
 
+    public static float DefaultWorldSpeed
+    {
+        get { return defaultWorldSpeed; }
+    }
+
     public static void SetDefaultWorldSpeed()
     {
         WorldSpeed = defaultWorldSpeed;
