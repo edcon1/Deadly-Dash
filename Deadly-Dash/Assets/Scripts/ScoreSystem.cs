@@ -17,10 +17,16 @@ public class ScoreSystem
         private set { score = value; }
     }
 	
+    public void Start()
+    {
+        scoreDisplay.text = 0.ToString() + " KM";
+    }
+
 	// Update is called once per frame
 	public void Update ()
     {
         Score += GlobalScript.WorldSpeed * Time.deltaTime;
+
         truncate = (int)Score;
         scoreDisplay.text = truncate.ToString() + " KM";
 	}

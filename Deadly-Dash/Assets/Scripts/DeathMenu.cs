@@ -11,9 +11,16 @@ public class DeathMenu : MonoBehaviour
     public GameObject DeathMenuUI;
     public Text nextHS;
     public static bool IsPlayerDead = false;
+    public float timeToDecelerate = 2;
+    public int? initialBlanks = 10;
 
     private List<float> highScores = new List<float>();
     private ScoreSystem scoreSys = null;
+    private ProceduralGenerator pgInstance = null;
+    private ButtonMovement bmInstance = null;
+    private GameObject startPoint = null;
+    private bool introInitiated = false;
+    private float? deceleratioThreshold;
     //private RectTransform deathPanel = null;
 
     // Use this for initialization
@@ -31,13 +38,56 @@ public class DeathMenu : MonoBehaviour
         for (int i = 0; i < 10; ++i)
             highScores.Add(PlayerPrefs.GetFloat(GlobalScript.TableTag + GlobalScript.ScoreTag + i, float.NaN));
 
+        scoreSys.Start();
+
+        GameObject[] rootGameObjects = gameObject.scene.GetRootGameObjects();
+        foreach (GameObject go in rootGameObjects)
+        {
+            if (pgInstance == null)
+            {
+                pgInstance = go.GetComponentInChildren<ProceduralGenerator>();
+            }
+            if (bmInstance == null)
+            {
+                bmInstance = go.GetComponentInChildren<ButtonMovement>();
+            }
+
+            if (pgInstance != null && bmInstance != null) { break; }
+        }
+
         DeathMenuUI.SetActive(false);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
-        scoreSys.Update();
+        if (initialBlanks != null && startPoint == null && pgInstance.blankCount <= initialBlanks)
+        {
+            startPoint = pgInstance.LoadedPrefabs.Last.Value.obj;
+            initialBlanks = null;
+        }
+        else if (startPoint != null)
+        {
+            GlobalScript.WorldSpeed = bmInstance.maxSpeed;
+        }
+        else if (initialBlanks == null && introInitiated == false)
+        {
+            if (deceleratioThreshold == null)
+            {
+                deceleratioThreshold = Time.time + timeToDecelerate;
+            }
+
+            GlobalScript.WorldSpeed = Mathf.Lerp(bmInstance.maxSpeed, GlobalScript.DefaultWorldSpeed, Time.time / (float)deceleratioThreshold);
+
+            if (GlobalScript.WorldSpeed <= GlobalScript.DefaultWorldSpeed)
+            {
+                introInitiated = true;
+            }
+        }
+        else if (introInitiated == true)
+        {
+            scoreSys.Update();
+        }
 
         for (int i = 0; i < 10; ++i)
             if (scoreSys.Score > highScores[i])
