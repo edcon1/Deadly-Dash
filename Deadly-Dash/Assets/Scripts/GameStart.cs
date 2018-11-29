@@ -5,15 +5,37 @@ using UnityEngine.SceneManagement;
 
 public class GameStart : MonoBehaviour
 {
+
+    public AudioSource engineRevAudio;
+
+    private bool switchingScene = false;
+
+ 
     public void OnClickPlay()
     {
-        SceneManager.LoadScene("Main scene", LoadSceneMode.Single);
-        Time.timeScale = 1f;
+        if (switchingScene) return;
+        StartCoroutine(StartGame());
     }
 
     public void OnClickHighScore()
     {
+        if (switchingScene) return;
         SceneManager.LoadScene("HighScore", LoadSceneMode.Single);
         Time.timeScale = 1f;
+    }
+
+
+    IEnumerator StartGame()
+    {
+        switchingScene = true;
+
+        EngineRevAudioController controller = engineRevAudio.GetComponent<EngineRevAudioController>();
+        StartCoroutine(controller.RunSceneTransition());
+
+        yield return new WaitForSeconds(1.0f);
+        ////engineRevAudio.Stop();
+        SceneManager.LoadScene("Main scene", LoadSceneMode.Single);
+        Time.timeScale = 1f;
+        switchingScene = false;
     }
 }
