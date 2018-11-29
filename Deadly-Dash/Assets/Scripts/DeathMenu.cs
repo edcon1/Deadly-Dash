@@ -89,6 +89,7 @@ public class DeathMenu : MonoBehaviour
             scoreSys.Update();
         }
 
+
         for (int i = 0; i < 10; ++i)
             if (scoreSys.Score > highScores[i])
             {
